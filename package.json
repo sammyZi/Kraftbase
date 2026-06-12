@@ -1,0 +1,48 @@
+{
+  "name": "smartlearn",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@expo-google-fonts/inter": "^0.2.3",
+    "@expo/vector-icons": "^14.0.2",
+    "@react-navigation/bottom-tabs": "^7.2.0",
+    "@react-navigation/native": "^7.0.14",
+    "@react-navigation/native-stack": "^7.2.0",
+    "expo": "~52.0.0",
+    "expo-font": "~13.0.1",
+    "expo-splash-screen": "~0.29.13",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.5",
+    "react-native-safe-area-context": "4.12.0",
+    "react-native-screens": "~4.4.0",
+    "react-native-svg": "15.8.0"
+  },
+  "devDependencies": {
+    "@testing-library/react-native": "^12.9.0",
+    "@types/jest": "^29.5.14",
+    "@types/react": "~18.3.12",
+    "@types/react-test-renderer": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-native": "^4.1.0",
+    "fast-check": "^3.23.1",
+    "jest": "^29.7.0",
+    "jest-expo": "~52.0.0",
+    "react-test-renderer": "18.3.1",
+    "typescript": "~5.3.3"
+  },
+  "private": true
+}
