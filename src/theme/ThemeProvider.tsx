@@ -17,7 +17,6 @@
  */
 
 import { createContext, useContext, useMemo, type ReactNode } from 'react';
-import { useColorScheme } from 'react-native';
 
 import { getTheme, type Theme } from './theme';
 
@@ -34,19 +33,17 @@ export interface ThemeProviderProps {
 }
 
 /**
- * Provides the active `Theme` (resolved from the device color scheme) to all
- * descendants. Recomputes and re-exposes the theme when the system appearance
- * changes — `useColorScheme()` triggers a re-render and `useMemo` keyed on the
- * scheme rebuilds the value (Requirement 13.3).
+ * Provides the active `Theme` to all descendants.
+ *
+ * The app is **light-mode only** (per product decision): the provider always
+ * resolves the light theme via `getTheme('light')` and intentionally does NOT
+ * subscribe to the device color scheme, so dark appearance never changes the
+ * UI. `getTheme` remains the single resolver (its dark branch is still covered
+ * by unit/property tests), but the running app is pinned to light.
  */
 export function ThemeProvider({ children }: ThemeProviderProps): React.JSX.Element {
-  const scheme = useColorScheme();
-  // `useColorScheme` may report 'unspecified'; map it to `null` so the total
-  // `getTheme` resolver applies its documented light-theme fallback.
-  const theme = useMemo<Theme>(
-    () => getTheme(scheme === 'light' || scheme === 'dark' ? scheme : null),
-    [scheme],
-  );
+  // Light mode only — do not read `useColorScheme()`.
+  const theme = useMemo<Theme>(() => getTheme('light'), []);
 
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 }

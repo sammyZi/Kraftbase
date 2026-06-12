@@ -1,37 +1,29 @@
 /**
- * TabBar — floating bottom tab navigation (Home / Analytics).
+ * TabBar — floating bottom tab navigation.
  *
- * A single prop-driven component (Requirement 7.4) that renders a horizontal row
- * of tab items and highlights the active one with a token-based pill, expressing
- * the design's active / inactive states (Requirement 6.3). Switching the
- * `activeKey` transitions items between states (Requirement 6.4). Each item is a
- * `Pressable` so its pressed feedback is derived without extra state.
+ * A single prop-driven component (Requirement 7.4) that renders a centered
+ * floating white pill of icon-only circular items. The active item is a filled
+ * navy circle (Requirement 6.3); switching `activeKey` transitions items
+ * between states (Requirement 6.4). Each item is a `Pressable` so its pressed
+ * feedback is derived without extra state.
  *
- * Styling flows entirely through `makeStyles(theme)`; there are no inline style
- * object literals (Requirements 8.1, 8.2).
- *
- * Requirements: 6.3 (active/inactive states), 6.4 (state transitions),
- * 7.1/7.2 (reusable, separate file), 7.4 (typed props), 8.1/8.2 (consistent
- * styling, no inline styles).
+ * Styling lives in this file (self-contained). Labels are kept for
+ * accessibility but rendered icon-only to match the design.
  */
 
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { useTheme } from '../../theme';
-
-import { makeStyles } from './TabBar.styles';
-
-/** Name of an Ionicons glyph, used for the optional leading icon. */
+/** Name of an Ionicons glyph, used for the tab icon. */
 export type TabBarIconName = keyof typeof Ionicons.glyphMap;
 
 /** A single bottom-tab entry. */
 export interface TabBarItem {
   /** Stable identifier reported back through `onTabPress`. */
   key: string;
-  /** Visible tab label. */
+  /** Accessibility label for the tab. */
   label: string;
-  /** Optional Ionicons glyph rendered above/with the label. */
+  /** Ionicons glyph rendered in the circular item. */
   icon?: TabBarIconName;
 }
 
@@ -44,48 +36,75 @@ export interface TabBarProps {
   onTabPress: (key: string) => void;
 }
 
+const NAVY = '#1C274C';
+const WHITE = '#FFFFFF';
+const GRAY = '#708892';
+
 export function TabBar({
   items,
   activeKey,
   onTabPress,
 }: TabBarProps): React.JSX.Element {
-  const theme = useTheme();
-  const styles = makeStyles(theme);
-
   return (
-    <View style={styles.bar} accessibilityRole="tablist">
-      {items.map((item) => {
-        const active = item.key === activeKey;
-        const tint = active ? theme.colors.onPrimary : theme.colors.textSecondary;
-
-        return (
-          <Pressable
-            key={item.key}
-            accessibilityRole="tab"
-            accessibilityLabel={item.label}
-            accessibilityState={{ selected: active }}
-            onPress={() => onTabPress(item.key)}
-            style={({ pressed }) => {
-              const itemStyles = [styles.item, active && styles.itemActive];
-              return pressed ? [...itemStyles, styles.itemPressed] : itemStyles;
-            }}
-          >
-            {item.icon !== undefined ? (
-              <Ionicons
-                name={item.icon}
-                size={theme.typography.styles.bodyLg.fontSize}
-                color={tint}
-              />
-            ) : null}
-            <Text
-              style={active ? [styles.label, styles.labelActive] : styles.label}
-              numberOfLines={1}
+    <View style={styles.wrap} pointerEvents="box-none">
+      <View style={styles.bar} accessibilityRole="tablist">
+        {items.map((item) => {
+          const active = item.key === activeKey;
+          return (
+            <Pressable
+              key={item.key}
+              accessibilityRole="tab"
+              accessibilityLabel={item.label}
+              accessibilityState={{ selected: active }}
+              onPress={() => onTabPress(item.key)}
+              style={({ pressed }) => {
+                const base = [styles.item, active && styles.itemActive];
+                return pressed ? [...base, styles.itemPressed] : base;
+              }}
             >
-              {item.label}
-            </Text>
-          </Pressable>
-        );
-      })}
+              <Ionicons
+                name={item.icon ?? 'ellipse'}
+                size={20}
+                color={active ? WHITE : GRAY}
+              />
+            </Pressable>
+          );
+        })}
+      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  wrap: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: 'center',
+    paddingBottom: 24,
+  },
+  bar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingVertical: 6,
+    paddingHorizontal: 8,
+    borderRadius: 40,
+    backgroundColor: '#F4F3F3',
+  },
+  item: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+  itemActive: {
+    backgroundColor: NAVY,
+  },
+  itemPressed: {
+    opacity: 0.85,
+  },
+});

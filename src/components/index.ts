@@ -16,6 +16,7 @@ export { Avatar, type AvatarProps } from './Avatar/Avatar';
 export { ListItem, type ListItemProps } from './ListItem/ListItem';
 export { Header, type HeaderProps } from './Header/Header';
 export { EmptyState, type EmptyStateProps } from './EmptyState/EmptyState';
+export { ErrorBoundary, type ErrorBoundaryProps } from './ErrorBoundary/ErrorBoundary';
 
 // Home cards
 export { LessonCard, type LessonCardProps } from './LessonCard/LessonCard';
