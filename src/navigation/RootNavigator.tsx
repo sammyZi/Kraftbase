@@ -38,6 +38,7 @@ import {
   HomeScreen,
   LessonDetailScreen,
   OnboardingScreen,
+  ProfileScreen,
 } from '../screens';
 
 import type {
@@ -54,6 +55,7 @@ const Tab = createBottomTabNavigator<MainTabParamList>();
 const TAB_META: Record<keyof MainTabParamList, { label: string; icon: TabBarIconName }> = {
   Home: { label: 'Home', icon: 'home' },
   Analytics: { label: 'Analytics', icon: 'stats-chart' },
+  Profile: { label: 'Profile', icon: 'person-outline' },
 };
 
 /**
@@ -68,7 +70,7 @@ function AppTabBar({ state, navigation }: BottomTabBarProps): React.JSX.Element 
     { key: 'Home', label: 'Home', icon: 'home' },
     { key: 'buddy', label: 'AI buddy', icon: 'book-outline' },
     { key: 'Analytics', label: 'Analytics', icon: 'stats-chart' },
-    { key: 'profile', label: 'Profile', icon: 'person-outline' },
+    { key: 'Profile', label: 'Profile', icon: 'person-outline' },
   ];
 
   const handleTabPress = (key: string): void => {
@@ -120,6 +122,11 @@ function AnalyticsRoute(): React.JSX.Element {
   return <AnalyticsScreen />;
 }
 
+/** Profile route: no navigation controls beyond the shared tab bar. */
+function ProfileRoute(): React.JSX.Element {
+  return <ProfileScreen />;
+}
+
 /** LessonDetail route: reads the `lessonId` param; back returns to previous (Req 2.3). */
 function LessonDetailRoute({
   navigation,
@@ -142,6 +149,7 @@ function MainTabs(): React.JSX.Element {
     >
       <Tab.Screen name="Home" component={HomeRoute} />
       <Tab.Screen name="Analytics" component={AnalyticsRoute} />
+      <Tab.Screen name="Profile" component={ProfileRoute} />
     </Tab.Navigator>
   );
 }

@@ -103,6 +103,8 @@ export function LessonDetailScreen({
     <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
       <ScrollView
         showsVerticalScrollIndicator={false}
+        bounces={false}
+        overScrollMode="never"
         contentContainerStyle={styles.content}
       >
         {/* Green hero */}

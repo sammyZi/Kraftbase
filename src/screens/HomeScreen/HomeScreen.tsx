@@ -25,6 +25,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { BlurView } from 'expo-blur';
 
 import AVATAR_IMG from '../../assets/images/book_icon.png';
 import BUDDY_ILLUS from '../../assets/images/girl-pencil.png';
@@ -105,6 +106,8 @@ export function HomeScreen({
     <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
       <ScrollView
         showsVerticalScrollIndicator={false}
+        bounces={false}
+        overScrollMode="never"
         contentContainerStyle={styles.content}
       >
         {/* Header */}
@@ -170,6 +173,8 @@ export function HomeScreen({
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
+          bounces={false}
+          overScrollMode="never"
           contentContainerStyle={styles.tabsRow}
         >
           {tabs.map((tab) => {
@@ -208,6 +213,8 @@ export function HomeScreen({
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
+          bounces={false}
+          overScrollMode="never"
           contentContainerStyle={styles.cardsRow}
         >
           {lessons.map((lesson) => {
@@ -242,12 +249,12 @@ export function HomeScreen({
 
                 <Image source={LESSON_ILLUS} style={styles.lessonIllus} resizeMode="contain" />
 
-                <View style={styles.startRow}>
+                <BlurView intensity={40} tint="light" style={styles.startRow}>
                   <Text style={styles.startLabel}>Start learning</Text>
                   <View style={styles.startPlay}>
                     <Ionicons name="play" size={14} color={NAVY} />
                   </View>
-                </View>
+                </BlurView>
               </Pressable>
             );
           })}
@@ -448,8 +455,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: 'rgba(255,255,255,0.55)',
+    backgroundColor: 'rgba(255,255,255,0.4)',
     borderRadius: 40,
+    overflow: 'hidden',
     paddingLeft: 20,
     paddingRight: 6,
     paddingVertical: 13,

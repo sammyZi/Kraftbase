@@ -22,10 +22,11 @@ import type {
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-/** Bottom-tab routes (Home / Analytics) — neither takes params. */
+/** Bottom-tab routes (Home / Analytics / Profile) — none take params. */
 export type MainTabParamList = {
   Home: undefined;
   Analytics: undefined;
+  Profile: undefined;
 };
 
 /** Root native-stack routes. */

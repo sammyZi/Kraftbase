@@ -1,3 +1,7 @@
+// IMPORTANT: must be the first import so gesture handler is initialized before
+// any navigation/gesture code runs. Fixes stuck/unresponsive touch + scroll.
+import 'react-native-gesture-handler';
+
 import { registerRootComponent } from 'expo';
 
 import App from './App';

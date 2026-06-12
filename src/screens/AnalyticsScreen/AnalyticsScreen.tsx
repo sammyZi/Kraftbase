@@ -114,6 +114,8 @@ export function AnalyticsScreen(_props: AnalyticsScreenProps = {}): React.JSX.El
     <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
       <ScrollView
         showsVerticalScrollIndicator={false}
+        bounces={false}
+        overScrollMode="never"
         contentContainerStyle={styles.content}
       >
         {/* Header */}
@@ -211,6 +213,8 @@ export function AnalyticsScreen(_props: AnalyticsScreenProps = {}): React.JSX.El
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
+            bounces={false}
+            overScrollMode="never"
             contentContainerStyle={styles.catRow}
           >
             {CATEGORIES.map((cat) => {

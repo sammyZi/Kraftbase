@@ -20,6 +20,11 @@ export {
 } from './AnalyticsScreen/AnalyticsScreen';
 
 export {
+  ProfileScreen,
+  type ProfileScreenProps,
+} from './ProfileScreen/ProfileScreen';
+
+export {
   LessonDetailScreen,
   type LessonDetailScreenProps,
 } from './LessonDetailScreen/LessonDetailScreen';

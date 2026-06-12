@@ -34,6 +34,7 @@ import {
 } from '@expo-google-fonts/inter';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { ErrorBoundary } from './src/components';
 import { RootNavigator } from './src/navigation';
@@ -79,15 +80,17 @@ export default function App(): React.JSX.Element | null {
   }
 
   return (
-    <ErrorBoundary>
-      <ThemeProvider>
-        <SafeAreaProvider>
-          <NavigationContainer>
-            <RootNavigator />
-          </NavigationContainer>
-          <StatusBar style="auto" />
-        </SafeAreaProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ErrorBoundary>
+        <ThemeProvider>
+          <SafeAreaProvider>
+            <NavigationContainer>
+              <RootNavigator />
+            </NavigationContainer>
+            <StatusBar style="auto" />
+          </SafeAreaProvider>
+        </ThemeProvider>
+      </ErrorBoundary>
+    </GestureHandlerRootView>
   );
 }
