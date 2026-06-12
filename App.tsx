@@ -88,7 +88,9 @@ export default function App(): React.JSX.Element | null {
             <NavigationContainer>
               <RootNavigator />
             </NavigationContainer>
-            <StatusBar style="auto" />
+            {/* App is light-mode only with light backgrounds, so force dark
+                (black) status bar text/icons for legibility. */}
+            <StatusBar style="dark" />
           </SafeAreaProvider>
         </ThemeProvider>
       </ErrorBoundary>

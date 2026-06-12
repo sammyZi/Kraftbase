@@ -23,7 +23,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
 import Svg, { Circle } from 'react-native-svg';
@@ -99,8 +99,12 @@ export interface LessonDetailScreenProps {
 export function LessonDetailScreen({
   onBack,
 }: LessonDetailScreenProps): React.JSX.Element {
+  // The green hero extends up behind the status bar: we drop the SafeAreaView
+  // top edge and instead pad the hero down by the status bar inset, so the
+  // hero color fills the status bar area while content stays clear of the clock.
+  const insets = useSafeAreaInsets();
   return (
-    <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
+    <SafeAreaView style={styles.safe} edges={['left', 'right']}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         bounces={false}
@@ -108,7 +112,7 @@ export function LessonDetailScreen({
         contentContainerStyle={styles.content}
       >
         {/* Green hero */}
-        <View style={styles.hero}>
+        <View style={[styles.hero, { paddingTop: insets.top + 8 }]}>
           <Image source={ABC_ILLUS} style={styles.heroIllus} resizeMode="contain" />
 
           <Pressable style={styles.backBtn} onPress={onBack} hitSlop={8}>
