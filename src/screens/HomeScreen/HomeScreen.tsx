@@ -28,6 +28,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import AVATAR_IMG from '../../assets/images/book_icon.png';
 import BUDDY_ILLUS from '../../assets/images/girl-pencil.png';
+import ROBO_IMG from '../../assets/images/robo.png';
 import LESSON_ILLUS from '../../assets/images/real-removebg-preview.png';
 
 import { homeLessons, type HomeLesson } from './homeFixtures';
@@ -130,7 +131,7 @@ export function HomeScreen({
         <View style={styles.buddyCard}>
           <View style={styles.buddyRow}>
             <View style={styles.robot}>
-              <Ionicons name="logo-android" size={24} color={WHITE} />
+              <Image source={ROBO_IMG} style={styles.robotImg} resizeMode="contain" />
             </View>
             <View style={styles.buddyText}>
               <Text style={styles.buddyEyebrow}>Your A.i buddy</Text>
@@ -314,11 +315,10 @@ const styles = StyleSheet.create({
   robot: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    backgroundColor: ROBOT_BG,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  robotImg: { width: 54, height: 54 },
   buddyText: { flex: 1, marginLeft: 12 },
   buddyEyebrow: { fontFamily: FONT_REGULAR, fontSize: 10, color: GRAY },
   buddyTitle: { fontFamily: FONT_SEMIBOLD, fontSize: 12, color: BLACK, marginTop: 2 },

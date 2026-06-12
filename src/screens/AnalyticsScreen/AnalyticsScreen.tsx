@@ -18,6 +18,7 @@
 
 import { useState } from 'react';
 import {
+  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -26,6 +27,8 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+
+import ROBO_IMG from '../../assets/images/robo.png';
 
 // --- Exact Figma fills ---
 const WHITE = '#FFFFFF';
@@ -183,7 +186,7 @@ export function AnalyticsScreen(_props: AnalyticsScreenProps = {}): React.JSX.El
           {/* Inline tip banner */}
           <View style={styles.tip}>
             <View style={styles.tipIcon}>
-              <Ionicons name="logo-android" size={14} color={WHITE} />
+              <Image source={ROBO_IMG} style={styles.tipRobo} resizeMode="contain" />
             </View>
             <Text style={styles.tipText} numberOfLines={1}>
               You learn best with 5-min lessons.
@@ -361,13 +364,12 @@ const styles = StyleSheet.create({
     marginTop: 18,
   },
   tipIcon: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: '#3C425F', // Dark robot bg
+    width: 30,
+    height: 30,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  tipRobo: { width: 40, height: 40 },
   tipText: { flex: 1, fontFamily: FONT_MEDIUM, fontSize: 11, color: BLACK },
 
   // Skill progress card
