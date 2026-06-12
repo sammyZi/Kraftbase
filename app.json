@@ -24,9 +24,13 @@
           }
         }
       ],
-      "expo-font"
+      "expo-font",
+      "expo-asset",
+      "expo-status-bar"
     ],
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.smartlearn.app"
