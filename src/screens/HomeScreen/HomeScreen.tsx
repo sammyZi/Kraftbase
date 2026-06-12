@@ -139,7 +139,7 @@ export function HomeScreen({
           </View>
           
           <Image source={BUDDY_ILLUS} style={styles.buddyIllus} resizeMode="contain" />
-          <Ionicons name="bulb" size={20} color="#F4B400" style={styles.buddyBulb} />
+
 
           <View style={styles.pickCard}>
             <View style={styles.pickLeft}>
@@ -340,7 +340,7 @@ const styles = StyleSheet.create({
 
   pickCard: {
     marginTop: 14,
-    borderRadius: 20,
+    borderRadius: 30,
     backgroundColor: WHITE,
     paddingVertical: 14,
     paddingHorizontal: 16,
@@ -392,9 +392,9 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE,
   },
   tabActive: { backgroundColor: NAVY, borderColor: NAVY },
-  tabPrefixText: { fontFamily: FONT_BOLD, fontSize: 14, color: NAVY },
+  tabPrefixText: { fontFamily: FONT_BOLD, fontSize: 12, color: NAVY },
   tabPrefixTextActive: { color: WHITE },
-  tabLabel: { fontFamily: FONT_MEDIUM, fontSize: 14, color: NAVY },
+  tabLabel: { fontFamily: FONT_MEDIUM, fontSize: 12, color: NAVY },
   tabLabelActive: { color: WHITE },
   tabCount: {
     minWidth: 24,
@@ -405,7 +405,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tabCountActive: { backgroundColor: WHITE },
-  tabCountText: { fontFamily: FONT_SEMIBOLD, fontSize: 12, color: GRAY },
+  tabCountText: { fontFamily: FONT_SEMIBOLD, fontSize: 11, color: GRAY },
   tabCountTextActive: { color: NAVY },
 
   // Lesson cards
@@ -452,7 +452,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     paddingLeft: 20,
     paddingRight: 6,
-    paddingVertical: 6,
+    paddingVertical: 13,
     zIndex: 3,
   },
   startLabel: { fontFamily: FONT_SEMIBOLD, fontSize: 16, color: TEAL },
