@@ -22,7 +22,10 @@
  * components decoupled from the navigator (Req 7.2).
  */
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  type NativeStackNavigationProp,
+} from '@react-navigation/native-stack';
 import {
   createBottomTabNavigator,
   type BottomTabBarProps,
@@ -30,7 +33,6 @@ import {
 
 import {
   TabBar,
-  type TabBarIconName,
   type TabBarItem,
 } from '../components';
 import {
@@ -50,13 +52,6 @@ import type {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<MainTabParamList>();
-
-/** Label + icon metadata for each bottom-tab route. */
-const TAB_META: Record<keyof MainTabParamList, { label: string; icon: TabBarIconName }> = {
-  Home: { label: 'Home', icon: 'home' },
-  Analytics: { label: 'Analytics', icon: 'stats-chart' },
-  Profile: { label: 'Profile', icon: 'person-outline' },
-};
 
 /**
  * Bridges the bottom-tab navigator state onto the existing `TabBar` component.
@@ -122,9 +117,17 @@ function AnalyticsRoute(): React.JSX.Element {
   return <AnalyticsScreen />;
 }
 
-/** Profile route: no navigation controls beyond the shared tab bar. */
-function ProfileRoute(): React.JSX.Element {
-  return <ProfileScreen />;
+/** Profile route: log out redirects to Onboarding. */
+function ProfileRoute({ navigation }: MainTabScreenProps<'Profile'>): React.JSX.Element {
+  return (
+    <ProfileScreen
+      onLogOut={() =>
+        navigation
+          .getParent<NativeStackNavigationProp<RootStackParamList>>()
+          ?.reset({ index: 0, routes: [{ name: 'Onboarding' }] })
+      }
+    />
+  );
 }
 
 /** LessonDetail route: reads the `lessonId` param; back returns to previous (Req 2.3). */

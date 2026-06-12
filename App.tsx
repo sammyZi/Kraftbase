@@ -23,6 +23,7 @@
  */
 
 import { useCallback, useEffect } from 'react';
+import { StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import {
@@ -80,7 +81,7 @@ export default function App(): React.JSX.Element | null {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={styles.root}>
       <ErrorBoundary>
         <ThemeProvider>
           <SafeAreaProvider>
@@ -94,3 +95,7 @@ export default function App(): React.JSX.Element | null {
     </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  root: { flex: 1 },
+});

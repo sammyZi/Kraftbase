@@ -19,7 +19,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
 
-import AVATAR_IMG from '../../assets/images/book_icon.png';
+import AVATAR_IMG from '../../assets/images/profille.png';
 
 // --- Exact Figma fills ---
 const WHITE = '#FFFFFF';
@@ -81,10 +81,13 @@ const SETTINGS: SettingRow[] = [
 export interface ProfileScreenProps {
   /** Display name shown on the profile card. Defaults to "Max". */
   userName?: string;
+  /** Callback fired when the log out button is tapped. */
+  onLogOut?: () => void;
 }
 
 export function ProfileScreen({
   userName = 'Max',
+  onLogOut,
 }: ProfileScreenProps): React.JSX.Element {
   const [notifications, setNotifications] = useState(true);
 
@@ -94,9 +97,11 @@ export function ProfileScreen({
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.title}>Profile</Text>
-          <View style={styles.iconBtn}>
-            <Ionicons name="settings-outline" size={20} color={NAVY} />
-          </View>
+          <Pressable style={styles.iconBtn}>
+            <BlurView intensity={40} tint="light" style={styles.blurIconBtn}>
+              <Ionicons name="settings-outline" size={20} color={NAVY} />
+            </BlurView>
+          </Pressable>
         </View>
 
         {/* Profile card */}
@@ -109,8 +114,9 @@ export function ProfileScreen({
             <Text style={styles.role}>Level 4 · Curious Explorer</Text>
           </View>
           <Pressable style={styles.editIconBtn}>
-            <BlurView intensity={30} tint="light" style={StyleSheet.absoluteFill} />
-            <Ionicons name="create-outline" size={18} color={NAVY} />
+            <BlurView intensity={40} tint="light" style={styles.blurIconBtn}>
+              <Ionicons name="pencil" size={18} color={NAVY} />
+            </BlurView>
           </Pressable>
         </View>
 
@@ -170,7 +176,7 @@ export function ProfileScreen({
         </View>
 
         {/* Log out */}
-        <Pressable style={styles.logout}>
+        <Pressable style={styles.logout} onPress={onLogOut}>
           <Ionicons name="log-out-outline" size={18} color={DANGER} />
           <Text style={styles.logoutLabel}>Log out</Text>
         </Pressable>
@@ -190,7 +196,11 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: 21,
-    backgroundColor: CHIP_GRAY,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(244, 243, 243, 0.4)',
+  },
+  blurIconBtn: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -222,8 +232,6 @@ const styles = StyleSheet.create({
     height: 38,
     borderRadius: 19,
     overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: 'rgba(255,255,255,0.4)',
   },
 

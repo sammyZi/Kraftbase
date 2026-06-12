@@ -26,8 +26,9 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
+import Svg, { Circle } from 'react-native-svg';
 
-import AVATAR_IMG from '../../assets/images/book_icon.png';
+import AVATAR_IMG from '../../assets/images/profille.png';
 import BUDDY_ILLUS from '../../assets/images/girl-pencil.png';
 import ROBO_IMG from '../../assets/images/robo.png';
 import LESSON_ILLUS from '../../assets/images/real-removebg-preview.png';
@@ -160,6 +161,10 @@ export function HomeScreen({
               20% <Text style={styles.pickPercentMuted}>complete</Text>
             </Text>
             <View style={styles.playBtnRing}>
+              <Svg width={44} height={44} viewBox="0 0 44 44" style={{ position: 'absolute', transform: [{ rotate: '-90deg' }] }}>
+                <Circle cx={22} cy={22} r={21} stroke="rgba(28, 39, 76, 0.1)" strokeWidth={2} fill="transparent" />
+                <Circle cx={22} cy={22} r={21} stroke={NAVY} strokeWidth={2} fill="transparent" strokeDasharray="131.95" strokeDashoffset="105.56" strokeLinecap="round" />
+              </Svg>
               <View style={styles.playBtn}>
                 <Ionicons name="play" size={16} color={NAVY} />
               </View>
@@ -366,10 +371,6 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    borderWidth: 2,
-    borderColor: NAVY,
-    borderLeftColor: 'rgba(28, 39, 76, 0.1)', // Simulate progress
-    borderTopColor: 'rgba(28, 39, 76, 0.1)',
     alignItems: 'center',
     justifyContent: 'center',
   },
