@@ -178,26 +178,15 @@ Kraftbase/
 
 ## Screenshots / screen recording
 
-> Replace the placeholders below with actual captures or a screen-recording link
-> before submission.
+| Onboarding | Home | Analytics |
+| :--------: | :--: | :-------: |
+| <img src="screenshots/onboarding.jpeg" width="240" alt="Onboarding screen" /> | <img src="screenshots/home.jpeg" width="240" alt="Home screen" /> | <img src="screenshots/analytics.jpeg" width="240" alt="Analytics screen" /> |
 
-| Screen        | Preview                                      |
-| ------------- | -------------------------------------------- |
-| Onboarding    | _(placeholder — add `docs/onboarding.png`)_  |
-| Home          | _(placeholder — add `docs/home.png`)_        |
-| Analytics     | _(placeholder — add `docs/analytics.png`)_   |
-| LessonDetail  | _(placeholder — add `docs/lesson-detail.png`)_ |
+| Lesson Detail | Profile |
+| :-----------: | :-----: |
+| <img src="screenshots/detial.jpeg" width="240" alt="Lesson Detail screen" /> | <img src="screenshots/profile.jpeg" width="240" alt="Profile screen" /> |
 
-**Screen recording:** _(placeholder — add a link to a short walkthrough video, e.g. Loom/Drive/YouTube)_
-
-<!--
-Example once media exists:
-
-![Onboarding](docs/onboarding.png)
-![Home](docs/home.png)
-![Analytics](docs/analytics.png)
-![LessonDetail](docs/lesson-detail.png)
--->
+**Screen recording:** [`screenshots/Screenrecording_20260613_195736.mp4`](screenshots/Screenrecording_20260613_195736.mp4) — a short walkthrough of the running app.
 
 ---
 
