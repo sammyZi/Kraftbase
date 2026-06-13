@@ -3,8 +3,8 @@
 A cross-platform **React Native + TypeScript** app that reproduces the
 [`Assignment - React Native`](https://www.figma.com/design/tTurVwDccYbrqTqXLwRClW/Assignment---React-Native)
 Figma design. Built on the **Expo managed workflow** with **React Navigation**
-(native-stack + nested bottom tabs), a typed design-token layer, automatic dark
-mode, and bundled Inter fonts.
+(native-stack + nested bottom tabs), a typed design-token layer, **light-mode
+theming**, smooth micro-interactions, and bundled Inter fonts.
 
 The app implements four screens: **Onboarding** (entry), **Home**, **Analytics**,
 and **LessonDetail**.
@@ -141,9 +141,18 @@ Kraftbase/
   spacing, radii, and typography live in `src/theme/*` and are consumed via a
   `makeStyles(theme)` factory per component. No inline style literals are used,
   satisfying the consistent-styling requirement.
-- **Dark mode via `useColorScheme` + `ThemeProvider`.** The active theme is
-  recomputed on appearance changes and exposed through context; `useTheme()`
-  throws if used outside the provider to catch wiring mistakes early.
+- **Light-mode only theming.** Per the product decision the app is pinned to the
+  light theme: `ThemeProvider` always resolves `getTheme('light')` and does not
+  subscribe to the device color scheme, and `app.json` sets
+  `userInterfaceStyle: "light"`. The status bar is forced to dark content
+  (`<StatusBar style="dark" />`) so it stays legible on the light backgrounds.
+  `getTheme` remains a total resolver (its dark branch is still unit/property
+  tested), but the running app never switches to dark. `useTheme()` throws if
+  used outside the provider to catch wiring mistakes early.
+- **Smooth micro-interactions (bonus).** A reusable `PressableScale` primitive
+  springs interactive controls down on press, and screens use native-driver
+  `Animated` entrance transitions (eased fade + slide). Frosted-glass surfaces
+  use `expo-blur`.
 - **Fonts loaded via `expo-font` with splash gating.** The native splash is held
   until the Inter font families resolve, so text never flashes in a fallback
   face. If a font fails to load, the app continues with a documented system
@@ -162,8 +171,8 @@ Kraftbase/
   the design; weights 400/500/600/700 are bundled.
 - Screen content (lessons, streaks, skill progress) is sourced from local
   fixture/mock data to populate the Filled_State, since no backend is in scope.
-- A device set to dark appearance should receive the dark theme automatically;
-  there is no in-app manual theme toggle.
+- A device set to dark appearance still receives the **light** theme — the app
+  is intentionally light-mode only and has no in-app theme toggle.
 
 ---
 

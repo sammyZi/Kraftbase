@@ -159,8 +159,14 @@ export function LessonDetailScreen({
             </View>
           </View>
 
-          {/* AI buddy banner — real frosted-glass blur */}
-          <BlurView intensity={40} tint="light" style={styles.buddy}>
+          {/* AI buddy banner — real frosted-glass blur. `experimentalBlurMethod`
+              enables an actual backdrop blur on Android (iOS blurs natively). */}
+          <BlurView
+            intensity={90}
+            tint="light"
+            experimentalBlurMethod="dimezisBlurView"
+            style={styles.buddy}
+          >
             <View style={styles.robot}>
               <Image source={ROBO_IMG} style={styles.robotImg} resizeMode="contain" />
             </View>
@@ -340,7 +346,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 14,
-    backgroundColor: 'rgba(255,255,255,0.18)',
+    backgroundColor: 'rgba(255,255,255,0.3)',
     borderRadius: 24,
     overflow: 'hidden',
     padding: 16,

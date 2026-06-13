@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
 
   // Header
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  title: { fontFamily: FONT_SEMIBOLD, fontSize: 28, color: BLACK },
+  title: { fontFamily: FONT_SEMIBOLD, fontSize: 26, color: BLACK },
   bell: {
     width: 40,
     height: 40,
