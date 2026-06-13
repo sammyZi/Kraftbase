@@ -135,8 +135,8 @@ export function LessonDetailScreen({
             </View>
           </View>
 
-          {/* AI buddy banner */}
-          <View style={styles.buddy}>
+          {/* AI buddy banner — real frosted-glass blur */}
+          <BlurView intensity={40} tint="light" style={styles.buddy}>
             <View style={styles.robot}>
               <Image source={ROBO_IMG} style={styles.robotImg} resizeMode="contain" />
             </View>
@@ -153,7 +153,7 @@ export function LessonDetailScreen({
               </Svg>
               <Text style={styles.ringText}>12%</Text>
             </View>
-          </View>
+          </BlurView>
         </View>
 
         {/* Stepper timeline */}
@@ -269,11 +269,11 @@ const styles = StyleSheet.create({
   },
   heroIllus: {
     position: 'absolute',
-    right: 0,
-    top: 0,
+    right: -10,
+    top: 60,
     width: 200,
     height: 250,
-    zIndex: 1,
+    zIndex: 0,
   },
   backBtn: {
     width: 44,
@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   eyebrow: { fontFamily: FONT_MEDIUM, fontSize: 14, color: '#6E7A52', marginTop: 18 },
-  heroTitle: { fontFamily: FONT_SEMIBOLD, fontSize: 28, color: BLACK, marginTop: 4, lineHeight: 34 },
+  heroTitle: { fontFamily: FONT_SEMIBOLD, fontSize: 23, color: BLACK, marginTop: 4, lineHeight: 34 },
 
   chipRow: { flexDirection: 'row', gap: 10, marginTop: 18 },
   chip: {
@@ -307,13 +307,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 14,
-    backgroundColor: 'rgba(255,255,255,0.4)',
+    backgroundColor: 'rgba(255,255,255,0.18)',
     borderRadius: 24,
     overflow: 'hidden',
     padding: 16,
     marginTop: 24,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.6)',
+    // Sit above the illustration so the kid's leg tucks behind this blur card.
+    zIndex: 2,
   },
   robot: {
     width: 44,
