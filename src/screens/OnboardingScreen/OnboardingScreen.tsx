@@ -301,10 +301,10 @@ const styles = StyleSheet.create({
   // Child-on-apple illustration (bottom-right of card, clear of the text column).
   child: {
     position: 'absolute',
-    left: s(204),
-    top: s(470),
-    width: s(178),
-    height: s(196),
+    left: s(188),
+    top: s(460),
+    width: s(196),
+    height: s(214),
   },
 
   // --- Wordmark + book badge ---

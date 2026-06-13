@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
   },
 
   // Section
-  sectionTitle: { fontFamily: FONT_BOLD, fontSize: 24, color: BLACK, marginTop: 24 },
+  sectionTitle: { fontFamily: FONT_SEMIBOLD, fontSize: 24, color: BLACK, marginTop: 24 },
 
   // Category tabs
   tabsRow: { gap: 10, paddingTop: 16, paddingRight: 20 },
@@ -400,7 +400,7 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE,
   },
   tabActive: { backgroundColor: NAVY, borderColor: NAVY },
-  tabPrefixText: { fontFamily: FONT_BOLD, fontSize: 12, color: NAVY },
+  tabPrefixText: { fontFamily: FONT_SEMIBOLD, fontSize: 12, color: NAVY },
   tabPrefixTextActive: { color: WHITE },
   tabLabel: { fontFamily: FONT_MEDIUM, fontSize: 12, color: NAVY },
   tabLabelActive: { color: WHITE },
