@@ -164,7 +164,7 @@ export function LessonDetailScreen({
           <BlurView
             intensity={90}
             tint="light"
-            experimentalBlurMethod="dimezisBlurView"
+            //experimentalBlurMethod="dimezisBlurView"
             style={styles.buddy}
           >
             <View style={styles.robot}>
