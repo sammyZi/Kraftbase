@@ -9,6 +9,14 @@ theming**, smooth micro-interactions, and bundled Inter fonts.
 The app implements four screens: **Onboarding** (entry), **Home**, **Analytics**,
 and **LessonDetail**.
 
+<p align="center">
+  <img src="screenshots/onboarding.jpeg" width="200" alt="Onboarding screen" />
+  <img src="screenshots/home.jpeg" width="200" alt="Home screen" />
+  <img src="screenshots/analytics.jpeg" width="200" alt="Analytics screen" />
+  <img src="screenshots/detial.jpeg" width="200" alt="Lesson Detail screen" />
+  <img src="screenshots/profile.jpeg" width="200" alt="Profile screen" />
+</p>
+
 ---
 
 ## Prerequisites
