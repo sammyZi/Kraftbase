@@ -17,6 +17,7 @@ export { ListItem, type ListItemProps } from './ListItem/ListItem';
 export { Header, type HeaderProps } from './Header/Header';
 export { EmptyState, type EmptyStateProps } from './EmptyState/EmptyState';
 export { ErrorBoundary, type ErrorBoundaryProps } from './ErrorBoundary/ErrorBoundary';
+export { PressableScale, type PressableScaleProps } from './PressableScale/PressableScale';
 
 // Home cards
 export { LessonCard, type LessonCardProps } from './LessonCard/LessonCard';

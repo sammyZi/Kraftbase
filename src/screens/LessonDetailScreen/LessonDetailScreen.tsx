@@ -15,9 +15,11 @@
  * scroll content reserves space at the bottom for it.
  */
 
+import { useEffect, useRef } from 'react';
 import {
+  Animated,
+  Easing,
   Image,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -27,6 +29,8 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Ionicons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
 import Svg, { Circle } from 'react-native-svg';
+
+import { PressableScale } from '../../components';
 
 import ABC_ILLUS from '../../assets/images/abc.png';
 import ROBO_IMG from '../../assets/images/robo.png';
@@ -103,6 +107,24 @@ export function LessonDetailScreen({
   // top edge and instead pad the hero down by the status bar inset, so the
   // hero color fills the status bar area while content stays clear of the clock.
   const insets = useSafeAreaInsets();
+
+  // Entrance micro-interaction (Req 11): content fades in and the timeline
+  // gently slides up on mount. Native-driven with an ease-out cubic curve so
+  // it decelerates naturally and feels smooth rather than mechanical.
+  const entrance = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    Animated.timing(entrance, {
+      toValue: 1,
+      duration: 650,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, [entrance]);
+  const timelineTranslate = entrance.interpolate({
+    inputRange: [0, 1],
+    outputRange: [24, 0],
+  });
+
   return (
     <SafeAreaView style={styles.safe} edges={['left', 'right']}>
       <ScrollView
@@ -112,14 +134,16 @@ export function LessonDetailScreen({
         contentContainerStyle={styles.content}
       >
         {/* Green hero */}
-        <View style={[styles.hero, { paddingTop: insets.top + 8 }]}>
+        <Animated.View
+          style={[styles.hero, { paddingTop: insets.top + 8, opacity: entrance }]}
+        >
           <Image source={ABC_ILLUS} style={styles.heroIllus} resizeMode="contain" />
 
-          <Pressable style={styles.backBtn} onPress={onBack} hitSlop={8}>
+          <PressableScale style={styles.backBtn} onPress={onBack} hitSlop={8}>
             <View style={styles.backBtnBlur}>
               <Ionicons name="arrow-back" size={20} color={NAVY} />
             </View>
-          </Pressable>
+          </PressableScale>
 
           <Text style={styles.eyebrow}>Letters</Text>
           <Text style={styles.heroTitle}>Learn ABC with{'\n'}fun sounds</Text>
@@ -154,10 +178,15 @@ export function LessonDetailScreen({
               <Text style={styles.ringText}>12%</Text>
             </View>
           </BlurView>
-        </View>
+        </Animated.View>
 
         {/* Stepper timeline */}
-        <View style={styles.timeline}>
+        <Animated.View
+          style={[
+            styles.timeline,
+            { opacity: entrance, transform: [{ translateY: timelineTranslate }] },
+          ]}
+        >
           {STEPS.map((step, index) => {
             const topGreen = index > 0 && STEPS[index - 1].status === 'done';
             const bottomGreen = step.status === 'done';
@@ -233,19 +262,23 @@ export function LessonDetailScreen({
                     </View>
                     <Text style={styles.cardDesc}>{step.desc}</Text>
                     <View style={styles.actionRow}>
-                      <View style={styles.actionBtn}>
+                      <PressableScale
+                        style={styles.actionBtn}
+                        accessibilityRole="button"
+                        accessibilityLabel={`${step.action}: ${step.title}`}
+                      >
                         <Text style={styles.actionLabel}>{step.action}</Text>
                         <View style={styles.playCircle}>
                           <Ionicons name="play" size={13} color={WHITE} />
                         </View>
-                      </View>
+                      </PressableScale>
                     </View>
                   </View>
                 )}
               </View>
             );
           })}
-        </View>
+        </Animated.View>
       </ScrollView>
     </SafeAreaView>
   );
