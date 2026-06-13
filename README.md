@@ -184,17 +184,9 @@ Kraftbase/
 
 ---
 
-## Screenshots / screen recording
+## Screen recording
 
-| Onboarding | Home | Analytics |
-| :--------: | :--: | :-------: |
-| <img src="screenshots/onboarding.jpeg" width="240" alt="Onboarding screen" /> | <img src="screenshots/home.jpeg" width="240" alt="Home screen" /> | <img src="screenshots/analytics.jpeg" width="240" alt="Analytics screen" /> |
-
-| Lesson Detail | Profile |
-| :-----------: | :-----: |
-| <img src="screenshots/detial.jpeg" width="240" alt="Lesson Detail screen" /> | <img src="screenshots/profile.jpeg" width="240" alt="Profile screen" /> |
-
-**Screen recording:** [`screenshots/Screenrecording_20260613_195736.mp4`](screenshots/Screenrecording_20260613_195736.mp4) — a short walkthrough of the running app.
+**Screen recording:** [`screenshots/Screenrecording_20260613_195736.mp4`](screenshots/Screenrecording_20260613_195736.mp4) — a short walkthrough of the running app. (Screenshots of every screen are at the top of this README.)
 
 ---
 
